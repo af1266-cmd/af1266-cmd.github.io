@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Fik | Finance Portfolio & Rutgers Business School</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rutgers: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b1329',
+                            950: '#060a17'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 50%, #cc0033 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .scarlet-glow {
+            box-shadow: 0 10px 30px -10px rgba(204, 0, 51, 0.25);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-white/85 dark:bg-slate-900/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-900 via-blue-900 to-red-700 flex items-center justify-center text-white font-serif font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    AF
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-slate-900 dark:text-white text-base leading-tight tracking-tight">
+                        Adam Fik
+                    </span>
+                    <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                        Rutgers Business School
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#statement" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">Personal Statement</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">Skills</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">Projects</a>
+            </nav>
+
+            <!-- Actions & Theme Toggle -->
+            <div class="flex items-center gap-3">
+                <button id="themeToggleBtn" onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="https://www.linkedin.com/in/adam-fik-5092013b3" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 rounded-xl shadow-sm transition-transform active:scale-95">
+                    <i class="fa-brands fa-linkedin text-base text-blue-500"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3">
+            <a href="#statement" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-red-600">Personal Statement</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-red-600">Skills</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-red-600">Projects</a>
+            <a href="https://www.linkedin.com/in/adam-fik-5092013b3" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full mt-2 py-2.5 text-center text-sm font-medium text-white bg-slate-900 dark:bg-slate-100 dark:text-slate-900 rounded-xl">
+                <i class="fa-brands fa-linkedin text-blue-400"></i> LinkedIn Profile
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero & Personal Statement Section -->
+    <main class="flex-grow pt-24">
+        <section id="hero" class="relative py-12 md:py-20 overflow-hidden">
+            <!-- Background Glow Effects -->
+            <div class="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500/10 dark:bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 rounded-full bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-800/60 text-red-700 dark:text-red-400 text-xs font-semibold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Rutgers Business School • Finance Major</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+                            Hi, I'm <span class="gradient-text">Adam Fik</span>
+                        </h1>
+                        <p class="text-xl font-medium text-slate-600 dark:text-slate-300 mb-8">
+                            Aspiring Finance Professional & Business Analyst
+                        </p>
+
+                        <!-- Personal Statement Card -->
+                        <div id="statement" class="relative p-6 sm:p-8 rounded-2xl bg-white/95 dark:bg-slate-800/95 border border-slate-200 dark:border-slate-700 shadow-xl dark:shadow-none backdrop-blur-sm mb-8 text-left transition-all hover:border-red-500/50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-quote-left text-sm"></i>
+                                    <span>Personal Statement</span>
+                                </div>
+                                <span class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 font-mono text-slate-600 dark:text-slate-300">RBS Finance</span>
+                            </div>
+                            <p class="text-lg sm:text-xl font-serif leading-relaxed text-slate-800 dark:text-slate-100 font-normal italic">
+                                "Finance major at Rutgers Business School passionate about developing new finance skills and exploring finance careers."
+                            </p>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                            <a href="#projects" class="px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 font-semibold text-sm shadow-md transition-all hover:-translate-y-0.5">
+                                <i class="fa-solid fa-chart-line mr-2"></i> View Projects
+                            </a>
+                            <button onclick="copyContactEmail()" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow-md shadow-red-600/20 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                                <i class="fa-regular fa-envelope text-base"></i> Copy Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Profile Image Section -->
+                    <div class="w-full md:w-80 lg:w-96 flex flex-col items-center">
+                        <div class="relative w-64 h-80 sm:w-72 sm:h-96 rounded-3xl overflow-hidden p-1.5 bg-gradient-to-tr from-slate-900 via-red-800 to-blue-900 shadow-2xl scarlet-glow">
+                            <img src="Profile Picture.jpg" alt="Adam Fik - Headshot" class="w-full h-full object-cover rounded-[20px] object-top" onerror="this.onerror=null; this.src='https://placehold.co/600x800/1e293b/ffffff?text=Adam+Fik';">
+                        </div>
+
+                        <!-- Mini Highlights Pill -->
+                        <div class="mt-6 w-full max-w-xs bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-lg flex justify-around text-center">
+                            <div>
+                                <span class="block text-lg font-bold text-slate-900 dark:text-white">Rutgers</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Business School</span>
+                            </div>
+                            <div class="border-r border-slate-200 dark:border-slate-700"></div>
+                            <div>
+                                <span class="block text-lg font-bold text-slate-900 dark:text-white">Finance</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Major</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 bg-slate-100/70 dark:bg-slate-800/40 border-y border-slate-200/80 dark:border-slate-800/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-red-600 dark:text-red-400 mb-2">Core Competencies</h2>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white">Key Skills & Capabilities</p>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">Essential technical, analytical, and interpersonal abilities.</p>
+                </div>
+
+                <!-- Skills Grid (Five Core Skills) -->
+                <div id="skillsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Skill 1: Interpersonal Communication -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border-2 border-red-500/30 dark:border-red-500/20 hover:border-red-500 shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider font-bold text-red-600 dark:text-red-400">Core Capability</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Interpersonal Communication</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Articulating financial concepts clearly, collaborating effectively in group settings, and building professional relationships.
+                        </p>
+                    </div>
+
+                    <!-- Skill 2: Google Software -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border-2 border-blue-500/30 dark:border-blue-500/20 hover:border-blue-500 shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-google"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider font-bold text-blue-600 dark:text-blue-400">Productivity Suite</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Google Software</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Proficient in Google Docs, Google Slides, Google Sheets, Drive, and cloud collaboration workflows.
+                        </p>
+                    </div>
+
+                    <!-- Skill 3: Presentations & Public Speaking -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-display"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Presentation Skills</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Designing compelling slide decks and delivering concise executive summaries for academic and business projects.
+                        </p>
+                    </div>
+
+                    <!-- Skill 4: Basic HTML -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-html5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Basic HTML</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Foundational web development skills for structuring semantic webpages, publishing code repositories, and managing GitHub Pages.
+                        </p>
+                    </div>
+
+                    <!-- Skill 5: Language Proficiency -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-language"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Languages (Polish & French)</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Language proficiency in Polish alongside foundational skills in French, enabling effective cross-cultural communication.
+                        </p>
+                    </div>
+
+                    <!-- Skill 6: Team Collaboration and Leadership -->
+                    <div class="skill-card p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-users-gear"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">Team Collaboration & Leadership</h3>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Guiding group dynamics, fostering team synergy, aligning diverse talents towards shared objectives, and facilitating effective decisions.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 bg-slate-50 dark:bg-slate-900">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-red-600 dark:text-red-400 mb-2">Featured Work</h2>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white">Academic & Professional Projects</p>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">Demonstrating practical application in management analysis and internal audit risk assessment.</p>
+                </div>
+
+                <!-- Projects Grid (2 Projects) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Project 1: Management Skills Course Project -->
+                    <div class="group relative rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                        <div class="p-6 sm:p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-400">
+                                    College Semester Project
+                                </span>
+                                <span class="text-xs font-mono text-slate-400">NMBC Moving Solutions</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                                Management Skills Course Project
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                Collaborated with team members and developed group management skills in a course project over a college semester, resulting in a complete examination of the management issues within a small business and development of performance improvements.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Group Management</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Expectancy Theory</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Team Effectiveness</span>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between gap-4">
+                            <button onclick="openProjectModal('project1')" class="text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 flex items-center gap-1.5 transition-colors">
+                                <span>View Details</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                            <a href="Management Skills Final Presentation Personal.pptx" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-semibold shadow-sm transition-all hover:scale-105">
+                                <i class="fa-solid fa-file-powerpoint"></i>
+                                <span>Presentation Link</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Goldman Sachs Internal Audit Job Simulation -->
+                    <div class="group relative rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                        <div class="p-6 sm:p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400">
+                                    Goldman Sachs Virtual Simulation
+                                </span>
+                                <span class="text-xs font-mono text-slate-400">Forage</span>
+                            </div>
+
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                Internal Audit Job Simulation
+                            </h3>
+
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                Engaged with Internal Audit job simulation by Goldman Sachs on theforage.com in order to develop skills in internal auditing fundamentals, problem solving, and risk assessment.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Internal Audit</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Risk Assessment</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">Control Testing</span>
+                            </div>
+                        </div>
+
+                        <div class="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between gap-4">
+                            <button onclick="openProjectModal('project2')" class="text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors">
+                                <span>View Details</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                            <a href="Adam Fik Risk Assessment.xlsx" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-all hover:scale-105">
+                                <i class="fa-solid fa-file-excel"></i>
+                                <span>Risk Assessment Link</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <p class="text-white font-bold text-base">Adam Fik</p>
+                <p class="text-xs text-slate-500 mt-1">Rutgers Business School • Published via GitHub Pages</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="copyContactEmail()" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors" title="Copy Email Address">
+                    <i class="fa-regular fa-envelope text-base"></i>
+                </button>
+                <a href="mailto:af1266@scarletmail.rutgers.edu" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors" title="Send Email (af1266@scarletmail.rutgers.edu)">
+                    <i class="fa-solid fa-at text-base"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/adam-fik-5092013b3" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors" title="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin text-lg"></i>
+                </a>
+            </div>
+
+            <p class="text-xs text-slate-500">© 2026 Adam Fik. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Detail Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalContent">
+                <!-- Content dynamically injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
+        <span id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Project Detail Data
+        const projectData = {
+            project1: {
+                title: "Management Skills Course Project",
+                type: "College Semester Course Project • NMBC Moving Solutions",
+                description: "Collaborated with team members and developed group management skills in a course project over a college semester, resulting in a complete examination of the management issues within a small business and development of performance improvements.",
+                highlights: [
+                    "Conducted qualitative interviews with COO, supporting management, and line staff to examine group dynamics and operational challenges.",
+                    "Applied key organizational frameworks including Expectancy Theory and the Team Effectiveness Model to evaluate workforce motivation and accountability.",
+                    "Formulated actionable performance recommendations, including structured leadership visibility and performance-based incentive systems."
+                ],
+                tools: ["Group Management", "Expectancy Theory", "Team Effectiveness", "Small Business Analysis"],
+                fileText: "Management Skills Final Presentation Personal.pptx",
+                fileUrl: "Management Skills Final Presentation Personal.pptx",
+                fileType: "PowerPoint Presentation"
+            },
+            project2: {
+                title: "Internal Audit Job Simulation (Goldman Sachs)",
+                type: "Goldman Sachs Virtual Experience Program • Forage",
+                description: "Engaged with Internal Audit job simulation by Goldman Sachs on theforage.com in order to develop skills in internal auditing fundamentals, problem solving, and risk assessment.",
+                highlights: [
+                    "Evaluated internal controls, operational processes, and risk profiles across simulated financial business units.",
+                    "Performed comprehensive risk assessment exercises identifying inherent risks, mitigation strategies, and control testing procedures.",
+                    "Strengthened practical capabilities in audit methodology, analytical problem-solving, and professional reporting."
+                ],
+                tools: ["Internal Audit", "Risk Assessment", "Control Environment", "Forage / Goldman Sachs"],
+                fileText: "Adam Fik Risk Assessment.xlsx",
+                fileUrl: "Adam Fik Risk Assessment.xlsx",
+                fileType: "Excel Risk Assessment Model"
+            }
+        };
+
+        // Dark Mode Toggle Logic
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize Theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toast Notification Function
+        function showToast(message, iconClass = 'fa-solid fa-circle-check text-emerald-400') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+            toastIcon.className = iconClass + " text-lg";
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Copy Email Helper (Bypasses iFrame Clipboard API Permission Block)
+        function copyContactEmail() {
+            const email = "af1266@scarletmail.rutgers.edu";
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            
+            // Render hidden off-screen to avoid scroll shift
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast("Copied email address: " + email);
+                } else {
+                    showToast("Email: " + email);
+                }
+            } catch (err) {
+                showToast("Email: " + email);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Open Modal Dialog
+        function openProjectModal(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-400 mb-3">${data.type}</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">${data.title}</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">${data.description}</p>
+                
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Key Highlights</h4>
+                <ul class="space-y-2 mb-6">
+                    ${data.highlights.map(h => `<li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300"><i class="fa-solid fa-check text-red-500 mt-1"></i><span>${h}</span></li>`).join('')}
+                </ul>
+
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Core Competencies</h4>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    ${data.tools.map(t => `<span class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium">${t}</span>`).join('')}
+                </div>
+
+                <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">${data.fileType}</span>
+                    <a href="${data.fileUrl}" download class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i>
+                        <span>${data.fileText}</span>
+                    </a>
+                </div>
+            `;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal Dialog
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle Contact Form Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showToast("Thank you, Adam has received your message!");
+            document.getElementById('contactForm').reset();
+        }
+
+        // Close modal on outer click
+        window.onclick = function(e) {
+            const modal = document.getElementById('projectModal');
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        };
+    </script>
+</body>
+</html>
